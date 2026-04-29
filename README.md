@@ -1,6 +1,3 @@
-Aquí tienes una estructura profesional para tu README.md. Cópialo y pégalo directamente en tu archivo; esto le dará a tu repositorio un aspecto de proyecto serio y bien documentado.
-Task Organizer Automation
-
 A robust end-to-end (E2E) testing framework designed for the Task Manager Web application, built with Playwright and TypeScript.
 🚀 Overview
 
