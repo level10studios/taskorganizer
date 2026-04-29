@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Organizador de Tareas</title>
+</head>
+<body>
+    <header class="top-header">
+        <div class="header-left">
+            <div class="logo-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            </div>
+            <div class="header-text">
+                <h1>Organizador de Tareas</h1>
+                <p>Gestiona tus tareas de forma eficiente</p>
+            </div>
+        </div>
+        <button class="btn-trash" data-testid="btn-trash">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+            Papelera
+        </button>
+    </header>
+
+    <main class="app-container">
+        <!-- Form Column -->
+        <aside class="form-panel">
+            <div class="panel-header">
+                <h2>Nueva Tarea</h2>
+                <span class="status-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+                    Conectado
+                </span>
+            </div>
+            
+            <form id="taskForm">
+                <div class="input-group">
+                    <label for="taskInput">Título <span class="required">*</span></label>
+                    <input type="text" id="taskInput" data-testid="input-task-title" placeholder="Escribe el título de la tarea" maxlength="100">
+                    <div class="char-counter"><span id="titleCounter">0</span>/100</div>
+                </div>
+
+                <div class="input-group">
+                    <label for="taskDesc">Descripción</label>
+                    <textarea id="taskDesc" data-testid="input-task-desc" placeholder="Añade una descripción (opcional)" maxlength="500"></textarea>
+                    <div class="char-counter"><span id="descCounter">0</span>/500</div>
+                </div>
+
+                <div class="input-group">
+                    <label>Prioridad</label>
+                    <div class="priority-buttons">
+                        <button type="button" class="btn-priority" data-priority="alta">Alta</button>
+                        <button type="button" class="btn-priority active" data-priority="media">Media</button>
+                        <button type="button" class="btn-priority" data-priority="baja">Baja</button>
+                    </div>
+                    <small class="helper-text">Por defecto: Media</small>
+                </div>
+
+                <button type="submit" id="addBtn" class="btn-submit" data-testid="btn-add-task">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    Crear
+                </button>
+            </form>
+        </aside>
+
+        <!-- Board Column -->
+        <section class="board" data-testid="task-board">
+            <!-- Todo Column -->
+            <div class="board-column" data-status="todo" data-testid="column-todo">
+                <div class="column-header">
+                    <div class="column-title">
+                        <span class="icon-bg icon-todo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></span>
+                        <h3>Por hacer</h3>
+                    </div>
+                    <span class="task-count" id="count-todo" data-testid="count-todo">0</span>
+                </div>
+                <div class="task-list" id="list-todo">
+                    <!-- Tasks will be injected here -->
+                </div>
+            </div>
+
+            <!-- In Progress Column -->
+            <div class="board-column" data-status="in-progress" data-testid="column-in-progress">
+                <div class="column-header">
+                    <div class="column-title">
+                        <span class="icon-bg icon-in-progress"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span>
+                        <h3>En progreso</h3>
+                    </div>
+                    <span class="task-count" id="count-in-progress" data-testid="count-in-progress">0</span>
+                </div>
+                <div class="task-list" id="list-in-progress">
+                    <!-- Tasks will be injected here -->
+                </div>
+            </div>
+
+            <!-- Done Column -->
+            <div class="board-column" data-status="done" data-testid="column-done">
+                <div class="column-header">
+                    <div class="column-title">
+                        <span class="icon-bg icon-done"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg></span>
+                        <h3>Finalizado</h3>
+                    </div>
+                    <span class="task-count" id="count-done" data-testid="count-done">0</span>
+                </div>
+                <div class="task-list" id="list-done">
+                    <!-- Tasks will be injected here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Templates for JavaScript cloning -->
+    <template id="empty-state-template">
+        <div class="empty-state">
+            <div class="empty-icon-circle">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
+            </div>
+            <p class="empty-title">No hay tareas aquí</p>
+            <p class="empty-subtitle">Arrastra una tarea para moverla</p>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>
