@@ -46,6 +46,9 @@ npx playwright test
 To view the latest test report:
 Bash
 
+## Test Results
+![Test Status](assets/test-results.png)
+
 npx playwright show-report
 
 🤝 Contribution
