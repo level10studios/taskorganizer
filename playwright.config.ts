@@ -49,6 +49,16 @@ export default defineConfig({
       use: { ...devices['Desktop Safari'] },
     },
 
+    /* Configuración del servidor para que GitHub Actions pueda correr los tests */
+    webServer: {
+      command: 'npx http-server .', // Lanza el servidor desde la raíz
+      url: 'http://127.0.0.1:8080',
+      reuseExistingServer: !process.env.CI,
+      stdout: 'ignore',
+      stderr: 'pipe',
+    },
+
+
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
