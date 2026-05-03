@@ -49,14 +49,7 @@ export default defineConfig({
       use: { ...devices['Desktop Safari'] },
     },
 
-    /* Configuración del servidor para que GitHub Actions pueda correr los tests */
-    webServer: {
-      command: 'npx http-server .', // Lanza el servidor desde la raíz
-      url: 'http://127.0.0.1:8080',
-      reuseExistingServer: !process.env.CI,
-      stdout: 'ignore',
-      stderr: 'pipe',
-    },
+
 
 
     /* Test against mobile viewports. */
@@ -80,6 +73,8 @@ export default defineConfig({
     // },
   ],
 
+
+
   /* Run your local dev server before starting the tests */
   // webServer: {
   //   command: 'npm run start',
@@ -87,3 +82,12 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
+
+/* 2. Configuración del servidor (FUERA de projects) */
+webServer: {
+  command: 'npx http-server .', // Lanza el servidor desde la raíz
+    url: 'http://127.0.0.1:8080',
+      reuseExistingServer: !process.env.CI,
+        stdout: 'ignore',
+          stderr: 'pipe',
+  },
