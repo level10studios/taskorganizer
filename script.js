@@ -51,6 +51,15 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (!title) return;
 
+        // Verificar si la tarea ya existe (sin distinguir mayúsculas/minúsculas)
+        const isDuplicate = Array.from(document.querySelectorAll('.task-title'))
+            .some(el => el.textContent.trim().toLowerCase() === title.toLowerCase());
+            
+        if (isDuplicate) {
+            alert('La tarea ya existe.');
+            return;
+        }
+
         createTask(title, desc, selectedPriority);
         
         // Reset form
