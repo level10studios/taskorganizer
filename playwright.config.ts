@@ -23,9 +23,7 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    /* Base URL to use in actions like `await page.goto('')`. */
-    baseURL: 'http://127.0.0.1:8080',
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    baseURL: 'http://127.0.0.1:5500', // ← descomenta y pon 5500
     trace: 'on-first-retry',
   },
   /* Configure projects for major browsers */
@@ -68,12 +66,12 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 
+
   /* 2. Configuración del servidor (DENTRO de defineConfig) */
   webServer: {
-    command: 'npx http-server . -p 8080', // Lanza el servidor desde la raíz
-    url: 'http://127.0.0.1:8080',
+    command: 'npx http-server . -p 5500', // ← cambia 8080 por 5500
+    url: 'http://127.0.0.1:5500',         // ← cambia 8080 por 5500
     reuseExistingServer: !process.env.CI,
     stdout: 'ignore',
     stderr: 'pipe',
   },
-});  // ← Aquí cierra defineConfig, con webServer ya adentro
